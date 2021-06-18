@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+  background-color: white;
+  color: black;
+}
+.dark-mode {
+  background-color: #232324;
+  color: white;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title> PivotTable and Power Query with Tabular Data in Excel</title>
+</head>
+<body>
+    <button onclick="myFunction()">Toggle dark mode</button>
+    <script>
+    function myFunction() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
+    </script>
+    <h1 style="text-align:center;font-size:300%;">PivotTable and Power Query with Tabular Data in Excel</h1>
+    <h1>1. Tabular Data Format</h1>
+        <h2>1.1. Definition</h2>
+        <p>"Tabular data is data that is structured into rows, each of which contains information about some thing.
+        Each row contains the same number of cells (although some of these cells may be empty),
+        which provide values of properties of the thing described by the row.
+        In tabular data, cells within the same column provide values for the same property of the things described by each row"
+        (W3C)</p>
+        <p>Tabular data is normally at a granular level of detail,each row represents a record.
+        There's no type of summary involved.</p>
+        <p>Most of statistical tools such as Excel, SPSS, Tableau, R, Python's Pandas, etc. are designed
+        to work with tabular data format.
+        The same table can be parsed to different softwares with minimal modifications.</p>
+
+        <h2>1.3. Examples - Dos and Don'ts</h2>
+            <h3>1.3.1. Don'ts</h3>
+        <ul>
+        <li> Unstructred spreadsheet<br>
+            <br>
+            <iframe width="1200" height="600" frameborder="0" scrolling="no" src="https://emory-my.sharepoint.com/personal/mkim50_emory_edu/_layouts/15/Doc.aspx?sourcedoc={5cf215e6-ff29-4fa1-823d-289c7bb2a4a5}&action=embedview&wdAllowInteractivity=False&wdDownloadButton=True&wdInConfigurator=True"></iframe>
+            <br>
+        <li> Report table<br>
+            <br>
+            <iframe width="1200" height="600" frameborder="0" scrolling="no" src="https://emory-my.sharepoint.com/personal/mkim50_emory_edu/_layouts/15/Doc.aspx?sourcedoc={adb0ba0d-faa5-42c4-bc43-ea5d658eca71}&action=embedview&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True"></iframe>
+            <br>
+        </ul>
+            <h3>1.3.2. Dos</h3>
+        <ul>
+            <li> 1 row 1 record
+            <li> 1 column 1 label
+            <li> Labels (headers) are on the 1st row (A)
+            <li> Each column contains 1 variable, type of data or information
+            <li> Avoid blank cell/column/row </li>
+            <li> Spreadsheets used for tabular data contain data only </li>
+            <li> Good table </li>
+            <br>
+            <div><iframe width="1200" title="COVID-19 Case Surveillance Public Use Data" height="600" src="https://data.cdc.gov/w/vbim-akqf/tdwk-ruhb?cur=7i9nwfuV_YZ&from=root" frameborder="0"scrolling="no"><a href="https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf" title="COVID-19 Case Surveillance Public Use Data" target="_blank">COVID-19 Case Surveillance Public Use Data</a></iframe><p><a href="http://www.socrata.com/" target="_blank">Powered by Socrata</a></p></div>
+            <br>
+            <li> "OK" table </li>
+            <br>
+            <iframe width="1200" height="600" frameborder="0" scrolling="no" src="https://emory-my.sharepoint.com/personal/mkim50_emory_edu/_layouts/15/Doc.aspx?sourcedoc={cc22e7c4-0190-43a4-b03b-264ac3deeb09}&action=embedview&wdAllowInteractivity=False&wdDownloadButton=True&wdInConfigurator=True"></iframe>
+            <br>
+        </ul>
+    <h1> 2. PivotTable </h1>
+        <h2> 2.1. Definition </h2>
+            <p> A PivotTable is a powerful tool to calculate, summarize, and analyze data that lets you see comparisons, patterns, and trends in your data. </p>
+        <h2> 2.2. Insert PivotTable </h2>
+        <ol>
+            <li> (Optional) If you haven't generated a table from your spreadsheet, you can do it by <b><i> Insert > Table </i></b> </li>
+            <br>
+            <img src="https://support.content.office.net/en-us/media/d9736d3a-65b2-40d4-8715-3c814bdf464b.png">
+            <br>
+            Select range of columns and rows and select<b><i> " My table has headers " </i></b>
+            <br>
+            <img src="https://www.contextures.com/images/tables/exceltable04.png">
+            <br>
+            and name your table by <b><i> Table Design </i></b>
+            <br>
+            <img src ="https://support.content.office.net/en-us/media/be783862-012b-426a-a7e0-e803cb7d13c6.png">
+            <br>
+            <li> Insert PivotTable by<b><i> Insert > PivotTable </i></b> </li>
+            <br>
+            <img src="https://support.content.office.net/en-us/media/d9736d3a-65b2-40d4-8715-3c814bdf464b.png">
+            <br>
+            <li> Choose the data that you want to analyze (I recommend to use table name instead of range)</li>
+            <br>
+            <img src = "https://support.content.office.net/en-us/media/04bea9cf-04a3-403d-8a37-793241c177d2.png">
+            <br>
+            <li> Select <i>" Add this data to the Data Model "</i>
+            if you want to combine table from different sources </li>
+            <li> Select and drag desired fields to shown areas in <b><i>" PivotTable Fields "</i></b></li>
+            <br>
+            <img src = "https://support.content.office.net/en-us/media/095beeee-8781-4b14-be42-9b05e9aff8d3.png">
+            <br>
+            <ul>
+                <li> <b>Filters</b> area fields are shown as top-level report filters above the PivotTable </li>
+                <br>
+                <img src = "https://support.content.office.net/en-us/media/afcd3351-5fea-4095-8023-1fff26cc9778.png">
+                <br>
+                <li> <b>Columns </b> area fields are shown as Column Labels at the top of the PivotTable </li>
+                <br>
+                <img src = "https://support.content.office.net/en-us/media/b46252fd-038d-4875-848c-b8b6c69fb076.png">
+                <br>
+                <li> <b> Rows </b> area fields are shown as Row Labels on the left side of the PivotTable </li>
+                <br>
+                <img src = "https://support.content.office.net/en-us/media/c4f7f935-0973-45fc-8ee8-aaf0d159ebc4.png"/>
+                <br>
+                <p>Depending on the hierarchy of the fields, rows may be nested inside rows that are higher in position</p>
+                <br>
+                <li> <b> Values </b> area fields are shown as summarized numeric values in the PivotTable </li>
+                <br>
+                <img src = "https://support.content.office.net/en-us/media/d6c0147e-cbf4-4314-87d6-2e9ca01b4349.png"/>
+                <br>
+                <p> You can change the type of calculation for Values by left click on the name of the field
+                <b><i> > " Value Field Settings ... " > " Summarize Values by "</i></b></p>
+                <br>
+                <img src = "https://www.myexcelonline.com/wp-content/uploads/2019/01/Field-Value-Field-Settings-01.jpg"/>
+                <br>
+                <img src = "https://www.dummies.com/wp-content/uploads/429250.image0.jpg"/>
+                <br>
+            </ul>
+        </ol>
+        <h2> 2.3. Filter PivotTable </h2>
+            <ol>
+                <li> Select the column header arrow
+                <img src = "https://support.content.office.net/en-us/media/74a58824-2e40-473b-a207-162b2dc22733.gif"/>
+                    for the column you want to filter </li>
+                <li> Check or uncheck the boxes you want to show </li>
+                <li> Choose <b><i> "PivotTable Options"</i></b> by
+                <ol>
+                    <li>Left click on the first vertical line of the first existing PivotTable row
+                        to select PivotTable </li>
+                    <li>Right click and select <b><i> "PivotTable Options"</i></b></li>
+                </ol>
+                <br>
+                <img src = "https://emory-my.sharepoint.com/:i:/r/personal/dle23_emory_edu/Documents/pivotableoption.png?csf=1&web=1&e=WjAo1U"/>
+                <br>
+                <li> If you don't want to show "Grand Total", under <b><i> "Totals&Filters"</i></b> tab
+                uncheck <b><i> "Show grand totals for rows"</i></b> and/or
+                <b><i> "Show grand totals for columns"</i></b> </li>
+                <li> Note that you cannot change anything in PivotTable and
+                PivotTable convert your selected columns into different data types depending in the layout of
+                your PivotTable. So I recommend copying your PivotTable then Paste "Values" to do what you need. </li>
+            </ol>
+    <h1> 3. Power Query </h1>
+        <h2> 3.1. Definition </h2>
+            <p>Power Query is a data transformation and data preparation engine.
+                Using Power Query, you can perform the extract, transform, and load (ETL) processing of data</p>
+            <br>
+            <img src = "https://docs.microsoft.com/en-us/power-query/images/whatispowerquery.png"/>
+        <h2> 3.2. Launch Power Query Editor</h2>
+            <ol>
+                <li> You can launch Power Query Editor either by
+                <b><i> Data > Get Data > Launch Power Query Editor </i></b>
+                or <b><i> Data > Get Data </i></b> then choose any external data sources</li>
+                <br>
+                <img src="https://support.content.office.net/en-us/media/46aee357-1e22-4a84-98d8-e3bdf94c6519.png"/>
+                <br>
+                <li> Select "New Source" and choose any source of your desired data </li>
+                <li> From the <b><i>"Power Query - choose data"</i></b>  interface, select your table </li>
+                <br>
+                <img src = "https://docs.microsoft.com/en-us/power-query/media/power-query-ui/pqui-navigator.png"/>
+                <br>
+                <li> The basics of filtering data in Power Query Editor is similar to PivotTable</li>
+                <li> Note that Power Query doesn't load the whole table at once </li>
+            </ol>
+
+
+
+
+
+
+
+</body>
+</html>
